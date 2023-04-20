@@ -6,7 +6,12 @@ public class FizzBuzz {
 		if (string.isBlank()) {
 			return "Hello, my friend";
 		}
-		return "Hello "+string.substring(0,1).toUpperCase()+string.substring(1);
+		if(string.toUpperCase()==string) {
+			return "HELLO, "+string+" !";
+		} else {
+			return "Hello, "+string.substring(0,1).toUpperCase()+string.substring(1);
+		}
+		
 	}
 	
 	
