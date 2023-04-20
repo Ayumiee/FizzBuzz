@@ -2,6 +2,7 @@ package fizzbuzz;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import org.junit.jupiter.api.Test;
 
 class FizzBuzzTest {
@@ -24,6 +25,11 @@ class FizzBuzzTest {
 	@Test
 	void ex4() {
 		assertEquals(FizzBuzz.fizzbuzz("amy,bob"),"Hello, Amy, Bob");
+	}
+	
+	@Test
+	void ex5() {
+		assertEquals(FizzBuzz.fizzbuzz("amy,bob,jerry"),"Hello, Amy, Bob, Jerry");
 	}
 	
 }

@@ -3,14 +3,37 @@ package fizzbuzz;
 public class FizzBuzz {
 
 	public static Object fizzbuzz(String string) {
-		String[] tabString=new String[2];
+		String resultat="Hello, ";
+		String[] tabString=new String[10];
 		tabString=string.split(",");
 		
-		//deux personnes
-		if(tabString.length>1) {
-			return "Hello, "+tabString[0].substring(0,1).toUpperCase()+tabString[0].substring(1)
-					+", "+tabString[1].substring(0,1).toUpperCase()+tabString[1].substring(1);
+		//10 personnes
+		if (tabString.length>1) {
+			for (int i=0;i<tabString.length;i++) {
+				resultat=resultat+tabString[i].substring(0,1).toUpperCase()+tabString[i].substring(1);
+				if (i+1<tabString.length) {
+					resultat=resultat+", ";
+				}
+			}
+			return resultat;
 		}
+		
+// 2 personnes et + (à l'infini)
+//		String resultat="Hello, ";
+//		ArrayList<String> tabString=new ArrayList<String>();
+//		tabString=string.split(",");
+//		
+//		//2 personnes et +
+//		if (tabString.size()>1) {
+//			for (int i=0;i<tabString.size();i++) {
+//				resultat=resultat+tabString[i].substring(0,1).toUpperCase()+tabString[i].substring(1);
+//				if (i+1<tabString.size()) {
+//					resultat=resultat+", ";
+//				}
+//			}
+//			return resultat;
+//		}
+		
 		//nom vide
 		if (string.isBlank()) {
 			return "Hello, my friend";
@@ -22,9 +45,7 @@ public class FizzBuzz {
 			//première lettre en maj
 			return "Hello, "+string.substring(0,1).toUpperCase()+string.substring(1);
 		}
-		
 	}
-	
-	
-
+		
 }
+	
