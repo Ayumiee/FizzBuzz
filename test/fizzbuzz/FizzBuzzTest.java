@@ -21,4 +21,9 @@ class FizzBuzzTest {
 		assertEquals(FizzBuzz.fizzbuzz("JERRY"),"HELLO, JERRY !");
 	}
 	
+	@Test
+	void ex4() {
+		assertEquals(FizzBuzz.fizzbuzz("amy,bob"),"Hello, Amy, Bob");
+	}
+	
 }
