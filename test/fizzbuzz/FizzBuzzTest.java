@@ -7,9 +7,14 @@ import org.junit.jupiter.api.Test;
 class FizzBuzzTest {
 
 	@Test
-	void test() {
-		assertEquals(FizzBuzz.ex1("bob"),"Hello Bob");
+	void ex1() {
+		assertEquals(FizzBuzz.fizzbuzz("bob"),"Hello Bob");
 	}
 	
+	@Test
+	void ex2() {
+		assertEquals(FizzBuzz.fizzbuzz(""),"Hello, my friend");
+		assertEquals(FizzBuzz.fizzbuzz("  "),"Hello, my friend");
+	}
 	
 }
