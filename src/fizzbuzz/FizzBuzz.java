@@ -22,11 +22,13 @@ public class FizzBuzz {
 				}
 			}
 			// traitement des potentiels elements minuscules trouvés
-			for (int i = 0; i < tabStringMin.size(); i++) {
-				resultat = resultat + tabStringMin.get(i).substring(0, 1).toUpperCase()
-						+ tabStringMin.get(i).substring(1);
-				if (i + 1 < tabStringMin.size()) {
+			for (int j = 0; j < tabStringMin.size(); j++) {
+				resultat = resultat + tabStringMin.get(j).substring(0, 1).toUpperCase()
+						+ tabStringMin.get(j).substring(1);
+				if (j + 2 < tabStringMin.size()) {
 					resultat = resultat + ", ";
+				} else if (j + 1 < tabStringMin.size()) {
+					resultat = resultat + " and ";
 				}
 			}
 
@@ -39,12 +41,13 @@ public class FizzBuzz {
 				}
 				for (int i = 0; i < tabStringMaj.size(); i++) {
 					resultat = resultat + tabStringMaj.get(i);
-					if (i + 1 < tabStringMaj.size()) {
+					if (i + 2 < tabStringMaj.size()) {
 						resultat = resultat + ", ";
-					} else {
-						resultat = resultat + " !";
+					} else if (i + 1 < tabStringMaj.size()) {
+						resultat = resultat + " AND ";
 					}
 				}
+				resultat=resultat+" !";
 			}
 			return resultat;
 
