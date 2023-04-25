@@ -53,5 +53,14 @@ class FizzBuzzTest {
 		assertEquals(FizzBuzz.fizzbuzz("victor,AMY,JACK,MALA"), "Hello, Victor. AND HELLO, AMY, JACK AND MALA !");
 		assertEquals(FizzBuzz.fizzbuzz("victor,AMY"), "Hello, Victor. AND HELLO, AMY !");
 	}
+	
+	@Test
+	void ex8() {
+		assertEquals(FizzBuzz.fizzbuzz("bob         , amy    "), "Hello, Bob and Amy");
+		assertEquals(FizzBuzz.fizzbuzz("   bob ,  AMY ,    jerry  , JACK   "), "Hello, Bob and Jerry. AND HELLO, AMY AND JACK !");
+		assertEquals(FizzBuzz.fizzbuzz("  b  o b,   AM Y,je  rr  y,J A CK  "), "Hello, Bob and Jerry. AND HELLO, AMY AND JACK !");
+		assertEquals(FizzBuzz.fizzbuzz("  v  i cto  r,A                             M   Y               "), "Hello, Victor. AND HELLO, AMY !");
+		assertEquals(FizzBuzz.fizzbuzz("    vict  or            ,                    A MY              "), "Hello, Victor. AND HELLO, AMY !");
+	} 
 
 }

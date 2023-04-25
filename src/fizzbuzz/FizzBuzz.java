@@ -6,8 +6,17 @@ import java.util.Arrays;
 public class FizzBuzz {
 
 	public static Object fizzbuzz(String string) {
+		String stringSansEspace = "";
+		
+		// reconstruction pour effacer tous les espaces vides
+		for (char c : string.toCharArray()) {
+			if (c!=' ') {
+				stringSansEspace = stringSansEspace + c;
+			}
+		}
+
 		String resultat = "Hello, ";
-		ArrayList<String> tabString = new ArrayList<>(Arrays.asList(string.split(",")));
+		ArrayList<String> tabString = new ArrayList<>(Arrays.asList(stringSansEspace.split(",")));
 		ArrayList<String> tabStringMaj = new ArrayList<String>();
 		ArrayList<String> tabStringMin = new ArrayList<String>();
 
@@ -47,22 +56,22 @@ public class FizzBuzz {
 						resultat = resultat + " AND ";
 					}
 				}
-				resultat=resultat+" !";
+				resultat = resultat + " !";
 			}
 			return resultat;
 
 			// si 1 personne :
 		} else {
 			// nom vide
-			if (string.isBlank()) {
+			if (stringSansEspace.isBlank()) {
 				return "Hello, my friend";
 			}
 			// tout en majuscule
-			if (string.toUpperCase() == string) {
+			if (stringSansEspace.toUpperCase() == stringSansEspace) {
 				return "HELLO, " + string + " !";
 			} else {
 				// premiere lettre en maj
-				return "Hello, " + string.substring(0, 1).toUpperCase() + string.substring(1);
+				return "Hello, " + stringSansEspace.substring(0, 1).toUpperCase() + stringSansEspace.substring(1);
 			}
 		}
 	}
