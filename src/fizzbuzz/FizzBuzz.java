@@ -15,7 +15,8 @@ public class FizzBuzz {
 			}
 		}
 
-		StringBuilder resultat = new StringBuilder();
+		StringBuilder resultatMaj = new StringBuilder();
+		StringBuilder resultatMin = new StringBuilder();
 		ArrayList<String> tabString = new ArrayList<>(Arrays.asList(stringSansEspace.split(",")));
 		ArrayList<String> tabStringSansDoublons = new ArrayList<String>();
 		ArrayList<String> tabStringMaj = new ArrayList<String>();
@@ -24,6 +25,7 @@ public class FizzBuzz {
 		ArrayList<Integer> tabOccurenceMin = new ArrayList<Integer>();
 		ArrayList<Integer> tabOccurenceMaj = new ArrayList<Integer>();
 		boolean dejaDedans;
+		boolean yoda = false;
 
 		// retirer les doublons
 		if (tabString.size() > 0) {
@@ -37,12 +39,16 @@ public class FizzBuzz {
 				if (tabString.get(i).toUpperCase().equals(tabStringSansDoublons.get(j).toUpperCase())) {
 					tabOccurence.set(j, tabOccurence.get(j) + 1);
 					dejaDedans = true;
+					System.out.println("deja dedans\n");
 				}
 			}
 			if (!dejaDedans) {
 				tabStringSansDoublons.add(tabString.get(i));
 				tabOccurence.add(1);
 			}
+		}
+		for (int e = 0; e < tabOccurence.size(); e++) {
+			System.out.println(tabOccurence.get(e));
 		}
 
 		tabString.clear();
@@ -51,7 +57,7 @@ public class FizzBuzz {
 		if (tabStringSansDoublons.size() > 1) {
 			// tri des éléments majuscules et minuscules
 			for (int i = 0; i < tabStringSansDoublons.size(); i++) {
-				if (tabStringSansDoublons.get(i).toUpperCase() == tabStringSansDoublons.get(i)) {
+				if (tabStringSansDoublons.get(i).toUpperCase().equals(tabStringSansDoublons.get(i))) {
 					tabStringMaj.add(tabStringSansDoublons.get(i));
 					tabOccurenceMaj.add(tabOccurence.get(i));
 				} else {
@@ -59,56 +65,88 @@ public class FizzBuzz {
 					tabOccurenceMin.add(tabOccurence.get(i));
 				}
 			}
+			for (int e = 0; e < tabOccurenceMin.size(); e++) {
+				System.out.println("min:"+tabOccurenceMin.get(e));
+			}
+			for (int e = 0; e < tabOccurenceMaj.size(); e++) {
+				System.out.println("maj:"+tabOccurenceMaj.get(e));
+			}
 
 			tabOccurence.clear();
 
 			// traitement des potentiels elements minuscules trouvés
-			if (tabStringMin.size() > 0) {
-				resultat.append("Hello, ");
-			}
+
 			for (int i = 0; i < tabStringMin.size(); i++) {
+				// repérage du yoda
+				if (tabStringMin.get(i).toLowerCase().equals("yoda")) {
+					yoda = true;
+				}
 				// mise en forme
-				resultat.append(tabStringMin.get(i).substring(0, 1).toUpperCase() + tabStringMin.get(i).substring(1));
+				resultatMin.append(tabStringMin.get(i).substring(0, 1).toUpperCase() + tabStringMin.get(i).substring(1));
 				// occurence
 				if (tabOccurenceMin.get(i) > 1) {
-					resultat.append("(x" + tabOccurenceMin.get(i) + ")");
+					resultatMin.append("(x" + tabOccurenceMin.get(i) + ")");
 					if (i + 1 < tabStringMin.size()) {
-						resultat.append(",");
+						resultatMin.append(",");
 					}
 				}
 				// and ou virgule
 				if (i + 2 < tabStringMin.size()) {
-					resultat.append(", ");
+					resultatMin.append(", ");
 				} else if (i + 1 < tabStringMin.size()) {
-					resultat.append(" and ");
+					resultatMin.append(" and ");
 				}
 			}
+			// traitement yoda et placement du hello
+			if ((tabStringMin.size() > 0) && (yoda)) {
+				resultatMin.append(", Hello");
+			}
+			if ((tabStringMin.size() > 0) && (!yoda)) {
+				resultatMin.insert(0, "Hello, ");
+			}
+
+			yoda = false;
 
 			// traitement des potentiels elements majuscules trouvés
 			if (tabStringMaj.size() > 0) {
-				if (tabStringMin.size() > 0) {
-					resultat.append(". AND HELLO, ");
-				} else {
-					resultat.append("HELLO, ");
-				}
 				for (int i = 0; i < tabStringMaj.size(); i++) {
-					resultat.append(tabStringMaj.get(i));
+					// repérage du yoda
+					if (tabStringMaj.get(i).toLowerCase().equals("yoda")) {
+						yoda = true;
+					}
+					resultatMaj.append(tabStringMaj.get(i));
 					// occurence
 					if (tabOccurenceMaj.get(i) > 1) {
-						resultat.append("(x" + tabOccurenceMaj.get(i) + ")");
+						resultatMaj.append("(x" + tabOccurenceMaj.get(i) + ")");
 					}
 					// and ou virgule
 					if (i + 2 < tabStringMaj.size()) {
-						resultat.append(", ");
+						resultatMaj.append(", ");
 					} else if (i + 1 < tabStringMaj.size()) {
-						resultat.append(" AND ");
+						resultatMaj.append(" AND ");
 					}
 				}
-				resultat.append(" !");
+				// traitement yoda et placement du hello
+				if (tabStringMaj.size() > 0) {
+					if ((tabStringMin.size() > 0) && (yoda)) {
+						resultatMaj.insert(0, ". AND ");
+						resultatMaj.append(" HELLO");
+					}
+					if ((tabStringMin.size() > 0) && (!yoda)) {
+						resultatMaj.insert(0, ". AND HELLO, ");
+					}
+					if ((tabStringMin.size() == 0) && (yoda)) {
+						resultatMaj.append(" HELLO");
+					}
+					if ((tabStringMin.size() == 0) && (!yoda)) {
+						resultatMaj.insert(0, "HELLO, ");
+					}
+					resultatMaj.append(" !");
+				}
 			}
-			return resultat.toString();
+			return resultatMin.toString() + resultatMaj.toString();
 
-			// si 1 personne :
+		// si 1 personne :
 		} else {
 			// nom vide
 			if (stringSansEspace.isBlank()) {
@@ -123,4 +161,5 @@ public class FizzBuzz {
 			}
 		}
 	}
+
 }

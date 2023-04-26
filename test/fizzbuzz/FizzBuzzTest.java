@@ -75,4 +75,13 @@ class FizzBuzzTest {
 		assertEquals(FizzBuzz.fizzbuzz("BOB, bob, JERRY, amy, bob, JERRY, bob,amy,BOB"),"Hello, Amy(x2). AND HELLO, BOB(x5) AND JERRY(x2) !");
 		assertEquals(FizzBuzz.fizzbuzz("bob, BOB, JERRY, amy, bob, JERRY, bob,amy,BOB"),"Hello, Bob(x5), and Amy(x2). AND HELLO, JERRY(x2) !");
 	}
+	
+	@Test
+	void ex10() {
+		assertEquals(FizzBuzz.fizzbuzz("bob, YODA, amy, JERRY, YODA"),"Hello, Bob and Amy. AND YODA(x2) AND JERRY HELLO !");
+		assertEquals(FizzBuzz.fizzbuzz("bob, yoda, amy, JERRY"),"Bob, Yoda and Amy, Hello. AND HELLO, JERRY !");
+		assertEquals(FizzBuzz.fizzbuzz("bob, yoda, yoda, amy, JERRY"),"Bob, Yoda(x2), and Amy, Hello. AND HELLO, JERRY !");
+		assertEquals(FizzBuzz.fizzbuzz("bob, YODA, amy, JERRY, YODA"),"Hello, Bob and Amy. AND YODA(x2) AND JERRY HELLO !");
+		assertEquals(FizzBuzz.fizzbuzz("YODA, amy, JERRY, YODA"),"Hello, Amy. AND YODA(x2) AND JERRY HELLO !");
+	}
 }
