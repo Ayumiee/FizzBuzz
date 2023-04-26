@@ -5,19 +5,12 @@ import java.util.Arrays;
 
 public class FizzBuzz {
 
+	// ------------------------------------------------------------
+
 	public static Object fizzbuzz(String string) {
 		String stringSansEspace = "";
-
-		// reconstruction pour effacer tous les espaces vides
-		for (char c : string.toCharArray()) {
-			if (c != ' ') {
-				stringSansEspace = stringSansEspace + c;
-			}
-		}
-
 		StringBuilder resultatMaj = new StringBuilder();
 		StringBuilder resultatMin = new StringBuilder();
-		ArrayList<String> tabString = new ArrayList<>(Arrays.asList(stringSansEspace.split(",")));
 		ArrayList<String> tabStringSansDoublons = new ArrayList<String>();
 		ArrayList<String> tabStringMaj = new ArrayList<String>();
 		ArrayList<String> tabStringMin = new ArrayList<String>();
@@ -27,9 +20,23 @@ public class FizzBuzz {
 		boolean dejaDedans;
 		boolean yoda = false;
 
-		// retirer les doublons
+		// CAS OU IL N'Y A PAS DE PRENOMS
+		if (string.isBlank()) {
+			return "Hello, my friend";
+		}
+
+		// EFFACEMENT DES ESPACES VIDES
+		for (char c : string.toCharArray()) {
+			if (c != ' ') {
+				stringSansEspace = stringSansEspace + c;
+			}
+		}
+
+		// SPLIT
+		ArrayList<String> tabString = new ArrayList<>(Arrays.asList(stringSansEspace.split(",")));
+
+		// RETRAIT DOUBLONS
 		if (tabString.size() > 0) {
-			// initialisation
 			tabStringSansDoublons.add(tabString.get(0));
 			tabOccurence.add(1);
 		}
@@ -39,7 +46,6 @@ public class FizzBuzz {
 				if (tabString.get(i).toUpperCase().equals(tabStringSansDoublons.get(j).toUpperCase())) {
 					tabOccurence.set(j, tabOccurence.get(j) + 1);
 					dejaDedans = true;
-					System.out.println("deja dedans\n");
 				}
 			}
 			if (!dejaDedans) {
@@ -47,15 +53,11 @@ public class FizzBuzz {
 				tabOccurence.add(1);
 			}
 		}
-		for (int e = 0; e < tabOccurence.size(); e++) {
-			System.out.println(tabOccurence.get(e));
-		}
 
 		tabString.clear();
 
-		// si 2+ personnes :
-		if (tabStringSansDoublons.size() > 1) {
-			// tri des éléments majuscules et minuscules
+		// TRI ELEMENT MAJUSCULES ET MINUSCULES AVEC LEUR OCCURENCES
+		if (tabStringSansDoublons.size() > 0) {
 			for (int i = 0; i < tabStringSansDoublons.size(); i++) {
 				if (tabStringSansDoublons.get(i).toUpperCase().equals(tabStringSansDoublons.get(i))) {
 					tabStringMaj.add(tabStringSansDoublons.get(i));
@@ -65,101 +67,87 @@ public class FizzBuzz {
 					tabOccurenceMin.add(tabOccurence.get(i));
 				}
 			}
-			for (int e = 0; e < tabOccurenceMin.size(); e++) {
-				System.out.println("min:"+tabOccurenceMin.get(e));
-			}
-			for (int e = 0; e < tabOccurenceMaj.size(); e++) {
-				System.out.println("maj:"+tabOccurenceMaj.get(e));
-			}
-
 			tabOccurence.clear();
 
-			// traitement des potentiels elements minuscules trouvés
-
-			for (int i = 0; i < tabStringMin.size(); i++) {
-				// repérage du yoda
-				if (tabStringMin.get(i).toLowerCase().equals("yoda")) {
-					yoda = true;
-				}
-				// mise en forme
-				resultatMin.append(tabStringMin.get(i).substring(0, 1).toUpperCase() + tabStringMin.get(i).substring(1));
-				// occurence
-				if (tabOccurenceMin.get(i) > 1) {
-					resultatMin.append("(x" + tabOccurenceMin.get(i) + ")");
-					if (i + 1 < tabStringMin.size()) {
-						resultatMin.append(",");
+			// TRAITEMENT MINUSCULES -------------------------------------------
+			if (tabStringMin.size() > 0) {
+				
+				for (int i = 0; i < tabStringMin.size(); i++) {
+					// repérage du yoda
+					if (tabStringMin.get(i).toLowerCase().equals("yoda")) {
+						yoda = true;
+					}
+					// affichage : ajout du prénom traité
+					resultatMin.append(
+							tabStringMin.get(i).substring(0, 1).toUpperCase() + tabStringMin.get(i).substring(1));
+					// affichage : occurence
+					if (tabOccurenceMin.get(i) > 1) {
+						resultatMin.append("(x" + tabOccurenceMin.get(i) + ")");
+						if (i + 1 < tabStringMin.size()) {
+							resultatMin.append(",");
+						}
+					}
+					// affichage : and ou virgule
+					if (i + 2 < tabStringMin.size()) {
+						resultatMin.append(", ");
+					} else if (i + 1 < tabStringMin.size()) {
+						resultatMin.append(" and ");
 					}
 				}
-				// and ou virgule
-				if (i + 2 < tabStringMin.size()) {
-					resultatMin.append(", ");
-				} else if (i + 1 < tabStringMin.size()) {
-					resultatMin.append(" and ");
+
+				// TRAITEMENT YODA
+				if (yoda) {
+					resultatMin.append(", Hello");
+				} else {
+					resultatMin.insert(0, "Hello, ");
 				}
-			}
-			// traitement yoda et placement du hello
-			if ((tabStringMin.size() > 0) && (yoda)) {
-				resultatMin.append(", Hello");
-			}
-			if ((tabStringMin.size() > 0) && (!yoda)) {
-				resultatMin.insert(0, "Hello, ");
+				
 			}
 
+			// TRAITEMENT MAJUSCULES -----------------------------------------
 			yoda = false;
-
-			// traitement des potentiels elements majuscules trouvés
 			if (tabStringMaj.size() > 0) {
+
 				for (int i = 0; i < tabStringMaj.size(); i++) {
 					// repérage du yoda
 					if (tabStringMaj.get(i).toLowerCase().equals("yoda")) {
 						yoda = true;
 					}
+					// affichage : ajout du prénom traité
 					resultatMaj.append(tabStringMaj.get(i));
-					// occurence
+					// affichage : occurence
 					if (tabOccurenceMaj.get(i) > 1) {
 						resultatMaj.append("(x" + tabOccurenceMaj.get(i) + ")");
 					}
-					// and ou virgule
+					// affichage : and ou virgule
 					if (i + 2 < tabStringMaj.size()) {
 						resultatMaj.append(", ");
 					} else if (i + 1 < tabStringMaj.size()) {
 						resultatMaj.append(" AND ");
 					}
 				}
-				// traitement yoda et placement du hello
-				if (tabStringMaj.size() > 0) {
-					if ((tabStringMin.size() > 0) && (yoda)) {
-						resultatMaj.insert(0, ". AND ");
-						resultatMaj.append(" HELLO");
-					}
-					if ((tabStringMin.size() > 0) && (!yoda)) {
-						resultatMaj.insert(0, ". AND HELLO, ");
-					}
-					if ((tabStringMin.size() == 0) && (yoda)) {
-						resultatMaj.append(" HELLO");
-					}
-					if ((tabStringMin.size() == 0) && (!yoda)) {
-						resultatMaj.insert(0, "HELLO, ");
-					}
-					resultatMaj.append(" !");
-				}
-			}
-			return resultatMin.toString() + resultatMaj.toString();
 
-		// si 1 personne :
-		} else {
-			// nom vide
-			if (stringSansEspace.isBlank()) {
-				return "Hello, my friend";
-			}
-			// tout en majuscule
-			if (stringSansEspace.toUpperCase() == stringSansEspace) {
-				return "HELLO, " + string + " !";
-			} else {
-				// premiere lettre en maj
-				return "Hello, " + stringSansEspace.substring(0, 1).toUpperCase() + stringSansEspace.substring(1);
+				// TRAITEMENT YODA
+				if ((tabStringMin.size() > 0) && (yoda)) {
+					resultatMaj.insert(0, ". AND ");
+					resultatMaj.append(" HELLO");
+				}
+				if ((tabStringMin.size() > 0) && (!yoda)) {
+					resultatMaj.insert(0, ". AND HELLO, ");
+				}
+				if ((tabStringMin.size() == 0) && (yoda)) {
+					resultatMaj.append(" HELLO");
+				}
+				if ((tabStringMin.size() == 0) && (!yoda)) {
+					resultatMaj.insert(0, "HELLO, ");
+				}
+				resultatMaj.append(" !");
+
 			}
 		}
+		return resultatMin.toString() + resultatMaj.toString();
 	}
+
+	// FIN -------------------------------------------------------------
 
 }
