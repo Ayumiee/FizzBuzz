@@ -24,28 +24,27 @@ class FizzBuzzTest {
 
 	@Test
 	void ex4() {
-		assertEquals(FizzBuzz.fizzbuzz("amy,bob"), "Hello, Amy, Bob");
+		assertEquals(FizzBuzz.fizzbuzz("amy,bob"), "Hello, Amy and Bob");
 	}
 
 	@Test
 	void ex5() {
-		assertEquals(FizzBuzz.fizzbuzz("amy,bob,jerry"), "Hello, Amy, Bob, Jerry");
-		assertEquals(FizzBuzz.fizzbuzz("amy,bob,jerry,lola,mathieu,carmen"), "Hello, Amy, Bob, Jerry, Mathieu, Carmen");
+		assertEquals(FizzBuzz.fizzbuzz("amy,bob,jerry"), "Hello, Amy, Bob and Jerry");
+		assertEquals(FizzBuzz.fizzbuzz("amy,bob,jerry,mathieu,carmen"), "Hello, Amy, Bob, Jerry, Mathieu and Carmen");
 	}
 	
 	@Test
 	void ex6() {
-		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry"), "Hello, Amy, Jerry. AND HELLO, BOB !");
-		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry,MARK"), "Hello, Amy, Jerry. AND HELLO, BOB, MARK !");
-		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry,MARK,MALA"), "Hello, Amy, Jerry. AND HELLO, BOB, MARK, MALA !");
-		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry,MARK,MALA,Pedro"), "Hello, Amy, Jerry, Pedro. AND HELLO, BOB, MARK, MALA !");
-		assertEquals(FizzBuzz.fizzbuzz("BOB,MARK"), "HELLO, BOB, MARK !");
+		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry"), "Hello, Amy and Jerry. AND HELLO, BOB !");
+		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry,MARK"), "Hello, Amy and Jerry. AND HELLO, BOB AND MARK !");
+		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry,MARK,MALA"), "Hello, Amy and Jerry. AND HELLO, BOB, MARK AND MALA !");
+		assertEquals(FizzBuzz.fizzbuzz("Amy,BOB,Jerry,MARK,MALA,Pedro"), "Hello, Amy, Jerry and Pedro. AND HELLO, BOB, MARK AND MALA !");
+		assertEquals(FizzBuzz.fizzbuzz("BOB,MARK"), "HELLO, BOB AND MARK !");
 		
 	}
 	
 	@Test
 	void ex7() {
-		// les tests 4, 5, 6 ne peuvent plus marcher car l'affichage est différent
 		assertEquals(FizzBuzz.fizzbuzz("bob,amy,jerry"), "Hello, Bob, Amy and Jerry");
 		assertEquals(FizzBuzz.fizzbuzz("bob,AMY,jerry,JACK"), "Hello, Bob and Jerry. AND HELLO, AMY AND JACK !");
 		assertEquals(FizzBuzz.fizzbuzz("bob,AMY,jerry,JACK,MALA,jason"), "Hello, Bob, Jerry and Jason. AND HELLO, AMY, JACK AND MALA !");
