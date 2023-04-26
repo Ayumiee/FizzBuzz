@@ -62,5 +62,17 @@ class FizzBuzzTest {
 		assertEquals(FizzBuzz.fizzbuzz("  v  i cto  r,A                             M   Y               "), "Hello, Victor. AND HELLO, AMY !");
 		assertEquals(FizzBuzz.fizzbuzz("    vict  or            ,                    A MY              "), "Hello, Victor. AND HELLO, AMY !");
 	} 
-
+	
+	@Test
+	void ex9() {
+		assertEquals(FizzBuzz.fizzbuzz("bob, JERRY, amy, bob, JERRY, bob"),"Hello, Bob(x3), and Amy. AND HELLO, JERRY(x2) !");
+		assertEquals(FizzBuzz.fizzbuzz("bob, JERRY, amy, bob, JERRY, bob,amy"),"Hello, Bob(x3), and Amy(x2). AND HELLO, JERRY(x2) !");
+		assertEquals(FizzBuzz.fizzbuzz("JERRY, JERRY,JERRY, AMY, AMY, JEAN"),"HELLO, JERRY(x3), AMY(x2) AND JEAN !");
+		assertEquals(FizzBuzz.fizzbuzz("bob, amy, bob, bob,amy"),"Hello, Bob(x3), and Amy(x2)");
+		
+		//cas où il y a le même nom en minuscule ET majuscule
+		//J'ai fais le choix d'afficher le nom en minuscule s'il apparait en minuscule en premier et inversement
+		assertEquals(FizzBuzz.fizzbuzz("BOB, bob, JERRY, amy, bob, JERRY, bob,amy,BOB"),"Hello, Amy(x2). AND HELLO, BOB(x5) AND JERRY(x2) !");
+		assertEquals(FizzBuzz.fizzbuzz("bob, BOB, JERRY, amy, bob, JERRY, bob,amy,BOB"),"Hello, Bob(x5), and Amy(x2). AND HELLO, JERRY(x2) !");
+	}
 }
