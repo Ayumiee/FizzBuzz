@@ -1,10 +1,6 @@
 # FizzBuzz
-  __________________
- | Mathilde DARQUES |\n
- |     22100244     |
- |__________________|
-          || 
-          ||
-         
+
+Mathilde DARQUES - n°22100244 
+
         
  
