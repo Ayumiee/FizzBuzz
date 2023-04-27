@@ -1,6 +1,6 @@
 # FizzBuzz
   __________________
- | Mathilde DARQUES |
+ | Mathilde DARQUES |\n
  |     22100244     |
  |__________________|
           || 
